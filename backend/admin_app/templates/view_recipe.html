@@ -1,0 +1,57 @@
+{% extends 'layout/app-layout.html' %}
+{% block content %}
+
+<div class="container mt-5">
+    <div class="card shadow-lg p-4 rounded border-2">
+        <div class="text-center">
+            <h2 class="fw-bold text-primary">{{ recipe.title }}</h2>
+            <img src="{{ recipe.image.url }}" class="img-fluid rounded shadow-lg mt-3" alt="Recipe Image" 
+                 style="max-width: 300px; height: auto;">
+        </div>
+
+        <div class="mt-4">
+            <table class="table table-bordered table-striped shadow-sm">
+                <tbody>
+                    <tr>
+                        <th class="bg-light text-dark">Ingredients</th>
+                        <td class="text-muted">{{ recipe.ingredients }}</td>
+                    </tr>
+                    <tr>
+                        <th class="bg-light text-dark">Steps</th>
+                        <td class="text-muted">{{ recipe.steps }}</td>
+                    </tr>
+                    <tr>
+                        <th class="bg-light text-dark">Cooking Time</th>
+                        <td><span class="badge bg-warning text-dark">{{ recipe.cooking_time }} mins</span></td>
+                    </tr>
+                    <tr>
+                        <th class="bg-light text-dark">Difficulty Level</th>
+                        <td><span class="badge bg-info text-white">{{ recipe.difficulty }}</span></td>
+                    </tr>
+                    <tr>
+                        <th class="bg-light text-dark">Creator</th>
+                        <td class="text-success fw-bold">{{ recipe.user.name }}</td>
+                    </tr>
+                    <tr>
+                        <th class="bg-light text-dark">Views</th>
+                        <td class="text-success fw-bold">{{ recipe.views }}</td>
+                    </tr>
+                    <tr>
+                        <th class="bg-light text-dark">Date</th>
+                        <td class="text-muted">{{ recipe.created_at|date:"F d, Y" }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="text-center mt-4">
+                <a href="{% url 'admin_dashboard' %}" class="btn btn-primary px-4 py-2 fw-semibold rounded-pill shadow-sm">
+                    Back to Dashboard
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+

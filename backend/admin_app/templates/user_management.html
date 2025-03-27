@@ -1,0 +1,43 @@
+{% extends 'layout/app-layout.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center mb-4">User Management</h2>
+
+    <div class="card mb-4">
+        <div class="card-header bg-success text-white">User Management</div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Status</th>
+                        <th>Recipes</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{user.name}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{% if user.is_active %} Active {% else %} Blocked {% endif %}</td>
+                        <td>
+                            <a href="{% url 'user_profile' user.id %}" class="btn btn-secondary btn-sm">View Recipes</a>
+                        </td>
+                        <td>
+                            {% if user.is_active %}
+                                <a href="{% url 'block_user' user.id %}" class="btn btn-warning btn-sm">Block</a>
+                            {% else %}
+                                <a href="{% url 'unblock_user' user.id %}" class="btn btn-success btn-sm">Unblock</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

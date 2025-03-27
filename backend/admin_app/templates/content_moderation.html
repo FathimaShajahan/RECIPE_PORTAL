@@ -1,0 +1,37 @@
+{% extends 'layout/app-layout.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Content Moderation</h2>
+
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">Recent Recipes</div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Creator</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                        <th>Views</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for recipe in recipes %}
+                    <tr>
+                        <td>{{recipe.title}}</td>
+                        <td>{{recipe.user.name}}</td>
+                        <td>{{recipe.created_at}}</td>
+                        <td>{{recipe.views}}</td>
+                        <td>
+                            <a href="{% url 'view_recipe' recipe.id %}" class="btn btn-info btn-sm">View</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'layout/app-layout.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Most Viewed Recipes</h2>
+
+    <div class="card mb-4">
+        <div class="card-header bg-warning text-dark">Most Viewed Recipes</div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>View Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for recipe in most_viewed %}
+                    <tr>
+                        <td>{{ recipe.id }}</td>
+                        <td>{{ recipe.title }}</td>
+                        <td>{{ recipe.views }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'layout/app-layout.html' %}
+{% block content %}
+
+<body class="bg-light">
+    <div class="container mt-4">
+        <h2 class="text-center mb-4">{{ user.name }}'s Profile</h2>
+        
+        <!-- User Information -->
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">User Details</div>
+            <div class="card-body">
+                <p><strong>Username:</strong> {{ user.name }}</p>
+                <p><strong>Email:</strong> {{ user.email }}</p>
+            </div>
+        </div>
+
+        <!-- User's Recipes -->
+        <div class="card mb-4">
+            <div class="card-header bg-info text-white">Recipes by {{ user.username }}</div>
+            <div class="card-body">
+                {% if recipes %}
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Created At</th>
+                                <th>View Count</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for recipe in recipes %}
+                            <tr>
+                                <td>{{ recipe.title }}</td>
+                                <td>{{ recipe.created_at }}</td>
+                                <td>{{recipe.views}}</td>
+                                <td>
+                                    <a href="{% url 'view_recipe' recipe.id %}" class="btn btn-info btn-sm">View</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <p>No recipes found for this user.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <a href="{% url 'admin_dashboard' %}" class="btn btn-primary">Back to Admin Dashboard</a>
+    </div>
+</body>
+{% endblock %}
+
